@@ -7,7 +7,10 @@ namespace MovieRating_Compulsary
 {
     public class MovieRatingService: IMovieRatingService
     {
-        private const string JsonPath = "/Users/choi/Desktop/ratings.json"; //ENTER PATH HERE TO THE JSON FILE
+        //VERY IMPORTANT. REMEMBER TO DELETE YOUR PATH BEFORE COMMITTING
+        //Jakobs - "/Users/choi/Desktop/ratings.json"
+        //Dannis - 
+        private const string JsonPath = ""; //ENTER PATH HERE TO THE JSON FILE
         
         private static List<MovieRatingEntity> ratings;
 
@@ -28,5 +31,20 @@ namespace MovieRating_Compulsary
         {
             return ratings.Count(i => i.Reviewer == x);
         }
+        
+        //2 
+        public double ReviewersAverageGrade(int x)
+        {
+            return ratings.Where(i => i.Reviewer == x).Average(i => i.Grade);
+        }
+        
+        //3
+        public int ReviewersSpecificGrading(int x, int y)
+        {
+            return ratings.Count(i => i.Reviewer == x && i.Grade == y);
+        }
+        
+        //4
+        
     }
 }

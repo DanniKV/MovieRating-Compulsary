@@ -7,5 +7,11 @@ namespace MovieRating_Compulsary
         
         //1
         int ReviewersTotalRatings(int x);
+        //2
+        double ReviewersAverageGrade(int x);
+        //3
+        int ReviewersSpecificGrading(int x, int y);
+        //4
     }
+    
 }
