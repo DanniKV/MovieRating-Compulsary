@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MovieRating_Compulsary
 {
-    class MovieRatingEntity
+    public class MovieRatingEntity
     {
         public int Reviewer { get; set; }
         public int Movie { get; set; }
