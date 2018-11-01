@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRating-Compulsary", "MovieRating-Compulsary\MovieRating-Compulsary.csproj", "{EF5283EB-D9E1-4AB8-B0EA-466E0BA3BDE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestProject1", "XUnitTestProject1\XUnitTestProject1.csproj", "{C15B5BD2-C389-4EA0-9123-FEED58B2AB66}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF5283EB-D9E1-4AB8-B0EA-466E0BA3BDE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF5283EB-D9E1-4AB8-B0EA-466E0BA3BDE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF5283EB-D9E1-4AB8-B0EA-466E0BA3BDE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF5283EB-D9E1-4AB8-B0EA-466E0BA3BDE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C15B5BD2-C389-4EA0-9123-FEED58B2AB66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C15B5BD2-C389-4EA0-9123-FEED58B2AB66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C15B5BD2-C389-4EA0-9123-FEED58B2AB66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C15B5BD2-C389-4EA0-9123-FEED58B2AB66}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D152D7A5-3C8B-499C-8F37-7E4188BA72D0}
+	EndGlobalSection
+EndGlobal
