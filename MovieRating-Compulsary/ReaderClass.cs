@@ -7,7 +7,7 @@ using System.IO;
 namespace MovieRating_Compulsary
 {
     public class ReaderClass
-    {
+    { /*
         private const string FILE_NAME = "Test Ratings.Json";
 
         public List<MovieRatingEntity> ratings = new List<MovieRatingEntity>();
@@ -90,7 +90,7 @@ namespace MovieRating_Compulsary
                 }
             }
             return m;
-        }
+        }*/
 
-    }
+    } 
 }
