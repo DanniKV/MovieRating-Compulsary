@@ -8,10 +8,8 @@ namespace MovieRating_Compulsary
 {
     public class MovieRatingService: IMovieRatingService
     {
-        //VERY IMPORTANT. REMEMBER TO DELETE YOUR PATH BEFORE COMMITTING
-        //Jakobs - "/Users/choi/Desktop/ratings.json"
-        //Dannis - 
-        private const string JsonPath = ""; //ENTER PATH HERE TO THE JSON FILE
+        //The small mock data file has been put in the root folder.
+        private const string JsonPath = "SmallMockData.json"; //ENTER PATH HERE TO THE JSON FILE
         
         private static List<MovieRatingEntity> ratings;
 
@@ -90,7 +88,7 @@ namespace MovieRating_Compulsary
                 .ThenByDescending(i3 => i3.Date).ToList();
         }
 
-        public List<MovieRatingEntity> whatReviewersHasRatedXMovie(int x)
+        public List<MovieRatingEntity> WhatReviewersHasRatedXMovie(int x)
         {
             return ratings.Where(i => i.Movie == x)
                 .OrderByDescending(i2 => i2.Grade)

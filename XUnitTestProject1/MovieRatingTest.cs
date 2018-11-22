@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using MovieRating_Compulsary;
 using Xunit;
@@ -15,200 +16,87 @@ namespace XUnitTestProject1
             _movieRatingService.LoadJson();
         }
 
-        private const int ReviewerIdTest = 1;
-        private const int SpecificGradeTest = 1;
-        private const int MovieIdTest = 1;
         private readonly IMovieRatingService _movieRatingService = new MovieRatingService();
-        /**
-         *  Running the unit test takes a while at the start
-         *  Due to the fact that it has the load the JSONFile
-         */
+
         
         
         //1 
-        [Fact]
-        public void ReviewersTotalRatingsTest()
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(2, 3)]
+        [InlineData(3, 4)]
+        [InlineData(4, 5)]
+        public void NumberReviewsFromReviewer(int input, int result)
         {
-            var sw = new Stopwatch();
-            sw.Start();
-
-            var reviewersTotalReviews = _movieRatingService.ReviewersTotalRatings(ReviewerIdTest);
-            Assert.True(reviewersTotalReviews >= 0,
-                "There was found 0 or less");
-
-            Assert.True(sw.Elapsed < new TimeSpan(0, 0, 0, 4, 0),
-                "The function took 4 seconds or more.");
+            int reviewsFromReviewer = _movieRatingService.ReviewersTotalRatings(input);
+            Assert.Equal(result, reviewsFromReviewer);
         }
         
         //2
-        [Fact]
-        public void ReviewersAverageGradeTest()
+        [Theory]
+        [InlineData(1, 1.5)]
+        [InlineData(2, 3)]
+        [InlineData(3, 3.5)]
+        [InlineData(4, 4)]
+        public void ReviewersAverageGradeTest(int input, double result)
         {
-            var sw = new Stopwatch();
-            sw.Start();
-
-            var averageGrade = _movieRatingService.ReviewersAverageGrade(ReviewerIdTest);
-            
-            Assert.True(averageGrade >= 0 && averageGrade <= 5,
-            "The average grade is not between 0 and 5");
-            
-            Assert.True(sw.Elapsed < new TimeSpan(0, 0, 0, 4, 0),
-                "The function took 4 seconds or more.");
-            
+            double averageRate = _movieRatingService.ReviewersAverageGrade(input);
+            Assert.Equal(result, averageRate);
         }   
         
         //3
-        [Fact]
-        public void ReviewersSpecificGradingTest()
+        [Theory]
+        [InlineData(1, 1, 1)]
+        [InlineData(2, 2, 1)]
+        [InlineData(3, 2, 1)]
+        [InlineData(4, 3, 2)]
+        [InlineData(5, 4, 4)]
+        public void ReviewersSpecificGradingTest(int input1, int input2, int result)
         {
-            var sw = new Stopwatch();
-            sw.Start();
-
-            var specificGradeCount = _movieRatingService.ReviewersSpecificGrading(ReviewerIdTest, SpecificGradeTest);
-
-            Assert.True(specificGradeCount >= 0,
-                "The number of specific grades are 0 or less");
-            
-            
-            Assert.True(sw.Elapsed < new TimeSpan(0, 0, 0, 4, 0),
-                "The function took 4 seconds or more.");
+            int givenGrade = _movieRatingService.ReviewersSpecificGrading(input1, input2);
+            Assert.Equal(result, givenGrade);
         }
         //4
-        [Fact]
-        public void HowManyTimesHasMovieBeenReviewedTest()
+        [Theory]
+        [InlineData(1, 5)]
+        [InlineData(2, 5)]
+        [InlineData(3, 4)]
+        [InlineData(4, 3)]
+        public void HowManyTimesHasMovieBeenReviewedTest(int input, int result)
         {
-            var sw = new Stopwatch();
-            sw.Start();
 
-            var movieReviewAmount = _movieRatingService.MovieAmountOfReviews(MovieIdTest);
-
-            Assert.True(movieReviewAmount >= 0,
-                "There was found 0 or less reviews");
-            
-            
-            Assert.True(sw.Elapsed < new TimeSpan(0, 0, 0, 4, 0),
-                "The function took 4 seconds or more.");
+            int movieReviewed = _movieRatingService.MovieAmountOfReviews(input);
+            Assert.Equal(result, movieReviewed);
         }
         
         //5   
-        [Fact]
-        public void AverageGradeOnMovieTest()
+        [Theory]
+        [InlineData(1, 3.6)]
+        [InlineData(2, 2.8)]
+        [InlineData(3, 4)]
+        [InlineData(5, 3.5)]        
+        public void AverageGradeOnMovieTest(int input, double result)
         {
-            var sw = new Stopwatch();
-            sw.Start();
+            var averageGradeOfMovie = _movieRatingService.AverageGradeOfMovie(input); 
 
-            var averageGradeOfMovie = _movieRatingService.AverageGradeOfMovie(1488844); //This number somehow works.
-
-            Assert.True(averageGradeOfMovie >= 0 && averageGradeOfMovie <= 5,
-                "The average grade is not between 0 and 5");
-            
-            
-            Assert.True(sw.Elapsed < new TimeSpan(0, 0, 0, 4, 0),
-                "The function took 4 seconds or more.");
+            Assert.Equal(result, averageGradeOfMovie);
         }
         
         //6
-        [Fact]
-        public void HowManyTimesHasMovieReceivedSpecificGradeTest()
+        [Theory]
+        [InlineData(1, 2, 2)]
+        [InlineData(2, 1, 1)]
+        [InlineData(3, 4, 2)]
+        [InlineData(4, 1, 0)]
+        public void HowManyTimesHasMovieReceivedSpecificGradeTest(int input1, int input2, int result)
         {
             var sw = new Stopwatch();
             sw.Start();
 
-            var specificGradeCount = _movieRatingService.HowManyTimesHasMovieReceivedSpecificGrade(MovieIdTest, SpecificGradeTest);
+            var movieGrade =
+                _movieRatingService.HowManyTimesHasMovieReceivedSpecificGrade(input1, input2);
 
-            Assert.True(specificGradeCount >= 0,
-                "The number of specific grades are 0 or less");
-            
-            
-            Assert.True(sw.Elapsed < new TimeSpan(0, 0, 0, 4, 0),
-                "The function took 4 seconds or more.");
+            Assert.Equal(result, movieGrade);
         }
-        
-        //7 
-        [Fact]
-        public void MoviesWithMostRatingsOfFiveTest()        
-        {
-            var sw = new Stopwatch();
-            sw.Start();
-
-            var moviesWithMostRatingsOfFive = _movieRatingService.MoviesWithMostRatingsOfFive();
-
-            Assert.True(moviesWithMostRatingsOfFive.Count >= 0,
-                "It didn't work! (I have no idea what to write here)");
-            
-            
-            Assert.True(sw.Elapsed < new TimeSpan(0, 0, 0, 4, 0),
-                "The function took 4 seconds or more.");
-        }
-        
-        //8
-        [Fact]
-        public void ReviewerWithMostReviewsTest()
-        {
-            var sw = new Stopwatch();
-            sw.Start();
-
-            var reviewerWithMostRatings = _movieRatingService.ReviewerWithMostRatings();
-
-            Assert.True(reviewerWithMostRatings >= 0,
-                "There was found 0 or less ratings");
-            
-            
-            Assert.True(sw.Elapsed < new TimeSpan(0, 0, 0, 4, 0),
-                "The function took 4 seconds or more.");
-        }
-        
-        //9
-        [Fact]
-        public void FindTopXOfMoviesTest()
-        {
-            var sw = new Stopwatch();
-            sw.Start();
-
-            var topXOfMovies = _movieRatingService.FindTopXOfMovies(5);
-            
-            
-            
-            Assert.True(topXOfMovies.Count == 5,
-                "The top 5 wasn't found");
-            
-            
-            Assert.True(sw.Elapsed < new TimeSpan(0,0,0,4,0),
-                "The function took 4 seconds or more.");
-        }
-        
-        //10
-        [Fact]
-        public void WhatMoviesHasXReviewedTest()
-        {
-            var sw = new Stopwatch();
-            sw.Start();
-
-            var whatMoviesHasXRated = _movieRatingService.WhatMoviesHasXRated(ReviewerIdTest);
-
-            Assert.True(whatMoviesHasXRated.Count >= 0,
-                "There was found 0 or less ratings");
-            
-            
-            Assert.True(sw.Elapsed < new TimeSpan(0, 0, 0, 4, 0),
-                "The function took 4 seconds or more.");
-        }
-        
-        //11 
-        [Fact]
-        public void WhatReviewersHasReviewedXMovieTest()
-        {
-            var sw = new Stopwatch();
-            sw.Start();
-
-            var whatReviewersHasRatedXMovie = _movieRatingService.whatReviewersHasRatedXMovie(MovieIdTest);
-
-            Assert.True(whatReviewersHasRatedXMovie.Count >= 0,
-                "There was found 0 or less ratings");
-            
-            
-            Assert.True(sw.Elapsed < new TimeSpan(0, 0, 0, 4, 0),
-                "The function took 4 seconds or more.");
-        }
-    }
+     }
 }

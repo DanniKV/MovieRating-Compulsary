@@ -28,7 +28,7 @@ namespace MovieRating_Compulsary
         //10
         List<MovieRatingEntity> WhatMoviesHasXRated(int x);
         //11
-        List<MovieRatingEntity> whatReviewersHasRatedXMovie(int x);
+        List<MovieRatingEntity> WhatReviewersHasRatedXMovie(int x);
     }
     
 }
